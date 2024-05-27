@@ -25,7 +25,7 @@ public class Queue<T> {
 
     public void enqueue(T element) {
         if (isFull()) {
-
+		throw new FullQueue(fullExceptionStr());
         }
         queueArray[tail++] = element;
 	tail %= size;
@@ -34,6 +34,7 @@ public class Queue<T> {
 
     public T dequeue() {
         if (isEmpty()) {
+		throw new EmptyQueue(EmptyExceptionStr());
         }
         int element = queueArray[head--];
         head = (head + size) % size;
@@ -43,6 +44,7 @@ public class Queue<T> {
 
     public int peek() {
         if (isEmpty()) {
+		throw new EmptyQueue(EmptyExceptionStr());
         }
         return queueArray[head];
     }
