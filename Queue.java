@@ -50,8 +50,13 @@ public class Queue<T> {
   }
 
   public void doubleTail() {
-    enqueue(dequeue());
-    elementsCount++;
+    if (isEmpty()) {
+      throw new EmptyQueue(EmptyExceptionStr());
+    }
+    if (isFull()) {
+      throw new FullQueue(FullExceptionStr());
+    }
+    enqueue(queueArray[tail]);
   }
 
   public boolean extract(T element) {
@@ -84,8 +89,18 @@ public class Queue<T> {
     if (isEmpty()) {
       throw new EmptyQueue(EmptyExceptionStr());
     }
+    int current = head;
+    for (int i = 1; i <= elementsCount; i++) {
+	    T element = queueArray[current++];
+	    current %= size;
+	    System.out.printf("\n%d:%s%s", i, includeSpaces(i), element);
+    }
+    System.out.printf("\n");
   }
 
+  private String includeSpaces(int value) {
+	  return " ".repeat(5 - String.valueOf(value).length());
+  }
 
   public String EmptyExceptionStr() {
 	  return "Очередь пуста";
