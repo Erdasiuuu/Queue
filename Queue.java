@@ -42,10 +42,43 @@ public class Queue<T> {
         return element;
     }
 
-    public int peek() {
+    public T peek() {
         if (isEmpty()) {
 		throw new EmptyQueue(EmptyExceptionStr());
         }
         return queueArray[head];
+    }
+
+    public void doubleTail() {
+	enqueue(dequeue());
+	elementsCount++;
+    }
+	
+    public boolean extract(T element) {
+        if (isEmpty()) {
+		throw new EmptyQueue(EmptyExceptionStr());
+        }
+	    boolean removed = false;
+	    int index = -1;
+	    int current = head;
+	    for (int i = 0; i < elementsCount && index == -1; i++) {
+		    if (queueArray[current++].equals(element)) {
+			    index = current - 1;
+		    }
+		    current %= size;
+	     } 
+	    if (index != -1) {
+		elementsCount--;
+		for (int i = index; i != tail; ) {
+			current = i++;
+			i %= size;
+			queueArray[current] = queueArray[i];
+		}
+		removed = true;
+	    }
+	    		    
+
+
+	    return removed;
     }
 }
