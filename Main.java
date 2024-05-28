@@ -5,7 +5,7 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     int choice = 0;
     while (choice != Constants.EXIT_PROG.getValue()) {
-	    Queue.printStartMenu();
+	    printStartMenu();
 	    choice = scanner.nextInt();
 	    scanner.nextLine();
 	    if (choice == Constants.PICK_STRING_QUEUE.getValue()) {
@@ -23,7 +23,7 @@ public class Main {
 		Queue<String> queue = new Queue<>();
 		int choice = 0;
 		while (choice != Constants.EXIT_QUEUE.getValue()) {
-			Queue.printQueueMenu();
+			printQueueMenu();
 			choice = scanner.nextInt();
 			scanner.nextLine();
 			if (choice == Constants.CHECK_QUEUE.getValue()) {
@@ -70,7 +70,7 @@ public class Main {
 		Queue<Integer> queue = new Queue<>();
 		int choice = 0;
 		while (choice != Constants.EXIT_QUEUE.getValue()) {
-			Queue.printQueueMenu();
+			printQueueMenu();
 			choice = scanner.nextInt();
 			scanner.nextLine();
 			if (choice == Constants.CHECK_QUEUE.getValue()) {
@@ -124,6 +124,24 @@ public class Main {
 	  }
   }
 
+  public static void printStartMenu() {
+    System.out.printf("Выберите тип данных для очереди\n");
+    System.out.printf("1. String\n");
+    System.out.printf("2. int\n");
+    System.out.printf("3. Завершение программы\n");
+  }
+
+  public static void printQueueMenu() {
+    System.out.printf("\nВведите один из вариантов меню.\n");
+    System.out.printf("1. Проверить пустая ли очередь\n");
+    System.out.printf("2. Добавить элемент в хвост очереди\n");
+    System.out.printf("3. Удалить элемент из головы очереди\n");
+    System.out.printf("4. Получить голову очереди\n");
+    System.out.printf("5. Продублировать хвост очереди\n");
+    System.out.printf("6. Извлечь из очереди первое вхождение передаваемого значения\n");
+    System.out.printf("7. Вывод очереди на экран\n");
+    System.out.printf("8. Завершение работы со стеком этого типа\n");
+  }
 
   public static void printErrorInput() {
     System.out.printf("\nНеверный ввод. Попробуйте еще раз\n");
