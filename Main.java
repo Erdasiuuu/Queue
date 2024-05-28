@@ -5,7 +5,7 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     int choice = 0;
     while (choice != Constants.EXIT_PROG.getValue()) {
-	    printStartMenu();
+	    Queue.printStartMenu();
 	    choice = scanner.nextInt();
 	    scanner.nextLine();
 	    if (choice == Constants.PICK_STRING_QUEUE.getValue()) {
@@ -27,13 +27,13 @@ public class Main {
 			choice = scanner.nextInt();
 			scanner.nextLine();
 			if (choice == Constants.CHECK_QUEUE.getValue()) {
-				queue.checkEmptyStack();
+				queue.checkEmptyQueue();
 			}
 			else if (choice == Constants.ENQUEUE.getValue()) {
-				queue.addStr();
+				addStr(queue, scanner);
 			}
 			else if (choice == Constants.DEQUEUE.getValue()) {
-				queue.rmStr();
+				queue.dequeue();
 			}
 			else if (choice == Constants.PEEK.getValue()) {
 				queue.peek();
@@ -42,7 +42,7 @@ public class Main {
 				queue.doubleTail();
 			}
 			else if (choice == Constants.EXTRACT.getValue()) {
-				queue.extractValue();
+				extractStr(queue, scanner);
 			}
 			else if (choice == Constants.DISPLAY.getValue()) {
 				queue.display();
@@ -53,6 +53,18 @@ public class Main {
 		}
 	}
 
+  public static void addStr(Queue<String> queue, Scanner scanner) {
+          System.out.printf("Введите строку для добавления в очередь\n");
+          String value = scanner.nextLine();
+          queue.enqueue(value);
+  }
+
+  public static void extractStr(Queue<String> queue, Scanner scanner) {
+          System.out.printf("Введите строку для удаления из очереди\n");
+          String value = scanner.nextLine();
+	  boolean result = queue.extract(value);
+	  extractSuccess(result);
+  }
 
 	public static void intQueue(Scanner scanner) {
 		Queue<Integer> queue = new Queue<>();
@@ -62,13 +74,13 @@ public class Main {
 			choice = scanner.nextInt();
 			scanner.nextLine();
 			if (choice == Constants.CHECK_QUEUE.getValue()) {
-				queue.checkEmptyStack();
+				queue.checkEmptyQueue();
 			}
 			else if (choice == Constants.ENQUEUE.getValue()) {
-				queue.addInt();
+				addInt(queue, scanner);
 			}
 			else if (choice == Constants.DEQUEUE.getValue()) {
-				queue.rmInt();
+				queue.dequeue();
 			}
 			else if (choice == Constants.PEEK.getValue()) {
 				queue.peek();
@@ -77,7 +89,7 @@ public class Main {
 				queue.doubleTail();
 			}
 			else if (choice == Constants.EXTRACT.getValue()) {
-				queue.extractValue();
+				extractInt(queue, scanner);
 			}
 			else if (choice == Constants.DISPLAY.getValue()) {
 				queue.display();
@@ -88,11 +100,28 @@ public class Main {
 		}
 	}
 
-  public static void printStartMenu() {
-    System.out.printf("Выберите тип данных для очереди\n");
-    System.out.printf("1. String\n");
-    System.out.printf("2. int\n");
-    System.out.printf("3. Завершение программы\n");
+  public static void addInt(Queue<Integer> queue, Scanner scanner) {
+          System.out.printf("Введите число для добавления в очередь\n");
+          int value = scanner.nextInt();
+          scanner.nextLine();
+          queue.enqueue(value);
+  }
+
+  public static void extractInt(Queue<Integer> queue, Scanner scanner) {
+          System.out.printf("Введите число для его удаления из очереди\n");
+          int value = scanner.nextInt();
+          scanner.nextLine();
+	  boolean result = queue.extract(value);
+	  extractSuccess(result);
+  }
+
+  public static void extractSuccess(boolean value) {
+	  if (value) {
+          	System.out.printf("Значение удалено из очереди\n");
+	  }
+	  else {
+          	System.out.printf("Значение не найдено в очереди\n");
+	  }
   }
 
 
