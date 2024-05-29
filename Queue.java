@@ -18,12 +18,11 @@ public class Queue<T> {
   }
 
   public void checkEmptyQueue() {
-	  if (isEmpty()) {
-		  System.out.printf("Очередь пуста\n");
-	  }
-	  else {
-		  System.out.printf("Количество элементов в очереди: %d\n", elementsCount);
-	  }
+    if (isEmpty()) {
+      System.out.printf("Очередь пуста\n");
+    } else {
+      System.out.printf("Количество элементов в очереди: %d\n", elementsCount);
+    }
   }
 
   private boolean isFull() {
@@ -100,22 +99,22 @@ public class Queue<T> {
     }
     int current = head;
     for (int i = 1; i <= elementsCount; i++) {
-	    current %= size;
-	    T element = queueArray[current++];
-	    System.out.printf("\n%d:%s%s", i, includeSpaces(i), element);
+      current %= size;
+      T element = queueArray[current++];
+      System.out.printf("\n%d:%s%s", i, includeSpaces(i), element);
     }
     System.out.printf("\n");
   }
 
   private String includeSpaces(int value) {
-	  return " ".repeat(5 - String.valueOf(value).length());
+    return " ".repeat(5 - String.valueOf(value).length());
   }
 
   private String EmptyExceptionStr() {
-	  return "Очередь пуста";
+    return "Очередь пуста";
   }
 
   private String FullExceptionStr() {
-	  return "Очередь полностью заполнена";
+    return "Очередь полностью заполнена";
   }
 }
