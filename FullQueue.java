@@ -1,3 +1,7 @@
+/**
+ * @brief класс для обработки полностью заполненной очереди
+ *
+ */
 class FullQueue extends RuntimeException {
   public FullQueue() {
     super();

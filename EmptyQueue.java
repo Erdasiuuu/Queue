@@ -1,3 +1,7 @@
+/**
+ * @brief класс для обработки пустой очереди
+ *
+ */
 public class EmptyQueue extends RuntimeException {
   public EmptyQueue() {
     super();
